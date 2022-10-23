@@ -1,8 +1,23 @@
 version: "3.9"
 services:
-  sn:
-    build: .
+  schoolnotify:
+    build: ./SchoolNotify
     ports:
       - "80:80"
     env_file:
       - .env
+  nginx:
+    build: jonasal/nginx-certbot:latest
+    restart: unless-stopped
+    env_file:
+      - ./nginx/nginx-certbot.env
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - schoolnotify
+    volumes:
+      - nginx_secrets:/etc/letsencrypt
+      - ./nginx/user_conf.d:/etc/nginx/user_conf.d
+volumes:
+  nginx_secrets:
