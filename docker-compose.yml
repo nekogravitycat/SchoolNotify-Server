@@ -1,23 +1,30 @@
 version: "3.9"
 services:
   schoolnotify:
-    image: ghcr.io/nekogravitycat/schoolnotify
-    ports:
-      - "80:80"
+    image: ghcr.io/nekogravitycat/schoolnotify:master
+    container_name: schoolnotify
+    restart: unless-stopped
+    expose:
+      - "5000"
+    environment:
+      - GUNICORN_CMD_ARGS="-b 0.0.0.0:5000"
     env_file:
       - schoolnotify.env
   nginx:
-    image: jonasal/nginx-certbot:latest
+    build: ./nginx
+    container_name: nginx
     restart: unless-stopped
-    env_file:
-      - nginx.env
-    ports:
-      - "80:80"
-      - "443:443"
+    expose:
+      - "80"
+      - "1337"
     depends_on:
       - schoolnotify
-    volumes:
-      - nginx_secrets:/etc/letsencrypt
-      - ./nginx/user_conf.d:/etc/nginx/user_conf.d
-volumes:
-  nginx_secrets:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - cloudflared.env
+    depends_on:
+      - nginx
