@@ -9,7 +9,7 @@ services:
     environment:
       - GUNICORN_CMD_ARGS="-b 0.0.0.0:5000"
     env_file:
-      - schoolnotify.env
+      - ./.env/schoolnotify.env
   nginx:
     build: ./nginx
     container_name: nginx
@@ -24,6 +24,6 @@ services:
     restart: unless-stopped
     command: tunnel run
     env_file:
-      - cloudflared.env
+      - ./.env/cloudflared.env
     depends_on:
       - nginx
