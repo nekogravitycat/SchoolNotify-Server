@@ -1,0 +1,3 @@
+[submodule "SchoolNotify"]
+	path = SchoolNotify
+	url = https://github.com/nekogravitycat/SchoolNotify.git
