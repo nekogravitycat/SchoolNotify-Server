@@ -16,7 +16,6 @@ services:
     restart: unless-stopped
     expose:
       - "80"
-      - "1337"
     depends_on:
       - schoolnotify
   cloudflared:
