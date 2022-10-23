@@ -1,16 +1,15 @@
 version: "3.9"
 services:
   schoolnotify:
-    build: ./SchoolNotify
     ports:
       - "80:80"
     env_file:
-      - .env
+      - schoolnotify.env
   nginx:
-    build: jonasal/nginx-certbot:latest
+    image: jonasal/nginx-certbot:latest
     restart: unless-stopped
     env_file:
-      - ./nginx/nginx-certbot.env
+      - nginx.env
     ports:
       - "80:80"
       - "443:443"
