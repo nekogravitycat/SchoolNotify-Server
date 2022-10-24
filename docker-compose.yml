@@ -21,9 +21,10 @@ services:
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
-    network_mode: "host"
     restart: unless-stopped
     command: tunnel run
+    ports:
+      - "7844:7844"
     env_file:
       - ./.env/cloudflared.env
     depends_on:
