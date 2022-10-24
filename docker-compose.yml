@@ -21,7 +21,6 @@ services:
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
-    network_mode: "host"
     restart: unless-stopped
     command: tunnel run
     env_file:
