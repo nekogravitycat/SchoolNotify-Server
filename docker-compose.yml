@@ -14,8 +14,8 @@ services:
     build: ./nginx
     container_name: nginx
     restart: unless-stopped
-    ports:
-      - "1337:80"
+    expose:
+      - 80
     depends_on:
       - schoolnotify
   cloudflared:
@@ -23,8 +23,6 @@ services:
     container_name: cloudflared
     restart: unless-stopped
     command: tunnel run
-    ports:
-      - "7844:7844"
     env_file:
       - ./.env/cloudflared.env
     depends_on:
