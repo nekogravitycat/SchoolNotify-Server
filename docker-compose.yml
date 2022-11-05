@@ -10,20 +10,20 @@ services:
       - GUNICORN_CMD_ARGS="-b 0.0.0.0:5000"
     env_file:
       - ./.env/schoolnotify.env
-  nginx:
+  schoolnotify-nginx:
     build: ./nginx
-    container_name: nginx
+    container_name: schoolnotify-nginx
     restart: on-failure
     expose:
       - 80
     depends_on:
       - schoolnotify
-  cloudflared:
+  schoolnotify-cloudflared:
     image: cloudflare/cloudflared:latest
-    container_name: cloudflared
+    container_name: schoolnotify-cloudflared
     restart: on-failure
     command: tunnel run
     env_file:
       - ./.env/cloudflared.env
     depends_on:
-      - nginx
+      - schoolnotify-nginx
