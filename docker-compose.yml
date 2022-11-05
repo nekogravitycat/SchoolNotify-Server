@@ -3,7 +3,7 @@ services:
   schoolnotify:
     image: nekogravitycat/schoolnotify:latest
     container_name: schoolnotify
-    restart: unless-stopped
+    restart: on-failure
     expose:
       - "5000"
     environment:
@@ -13,7 +13,7 @@ services:
   nginx:
     build: ./nginx
     container_name: nginx
-    restart: unless-stopped
+    restart: on-failure
     expose:
       - 80
     depends_on:
@@ -21,7 +21,7 @@ services:
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
-    restart: unless-stopped
+    restart: on-failure
     command: tunnel run
     env_file:
       - ./.env/cloudflared.env
