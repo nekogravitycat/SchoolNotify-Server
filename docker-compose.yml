@@ -8,6 +8,7 @@ services:
       - "5000"
     environment:
       - GUNICORN_CMD_ARGS="-b 0.0.0.0:5000"
+      - TZ=Asia/Taipei
     env_file:
       - ./.env/schoolnotify.env
   schoolnotify-nginx:
