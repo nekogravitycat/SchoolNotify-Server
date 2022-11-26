@@ -12,7 +12,7 @@ services:
     env_file:
       - ./.env/schoolnotify.env
   schoolnotify-nginx:
-    build: nginx:latest
+    image: nginx:latest
     container_name: schoolnotify-nginx
     restart: on-failure
     expose:
