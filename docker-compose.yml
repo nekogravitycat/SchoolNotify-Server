@@ -12,13 +12,13 @@ services:
     env_file:
       - ./.env/schoolnotify.env
   schoolnotify-nginx:
-    build: nginx
+    build: nginx:latest
     container_name: schoolnotify-nginx
     restart: on-failure
     expose:
       - 80
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - schoolnotify
   schoolnotify-cloudflared:
