@@ -1,3 +1,5 @@
 .idea/
 .evv/
+log/
 *.env
+*.log
