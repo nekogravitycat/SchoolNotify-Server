@@ -1,2 +1,2 @@
-0 18 * * * /home/gravity/SchoolNotify-Server/crontab/run_daily.sh >> /home/gravity/SchoolNotify-Server/crontab/crontab.log 2>&1
+0 18 * * * /home/gravity/SchoolNotify-Server/crontab/run_daily.sh >> /home/gravity/SchoolNotify-Server/crontab/crontab.log
 # Don't remove the empty line at the end of this file. It is required to run the cron job
