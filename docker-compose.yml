@@ -10,7 +10,7 @@ services:
       - GUNICORN_CMD_ARGS="-b 0.0.0.0:5000"
       - TZ=Asia/Taipei
     env_file:
-      - ./.env/schoolnotify.env
+      - ./env/schoolnotify.env
     volumes:
       - ./log:/app/log
       - ./data:/app/data
@@ -30,6 +30,6 @@ services:
     restart: on-failure
     command: tunnel run
     env_file:
-      - ./.env/cloudflared.env
+      - ./env/cloudflared.env
     depends_on:
       - schoolnotify-nginx
